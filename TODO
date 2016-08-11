@@ -1,0 +1,5 @@
+- From Adam Sulmicki <adam@cfar.umd.edu>: Here's a feature-wish. To have an
+option for "show removed tiles" just like it is in the latest KDE version
+of kmahjongg (not sure if is released as I have used cvs version).
+Basically a 4x9 board at a side which stacks the blocks which have been
+removed (up to 4 high).

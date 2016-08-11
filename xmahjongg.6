@@ -1,0 +1,342 @@
+.\" -*- mode: nroff -*-
+.ds V 3.7
+.ds E " \-\- 
+.if t .ds E \(em
+.de OP
+.BR "\\$1" "\\$2" "\\$3" "\\$4" "\\$5" "\\$6"
+..
+.de OA
+.IR "\fB\\$1\& \|\fI\\$2" "\\$3" "\\$4" "\\$5" "\\$6"
+..
+.de QO
+.RB ` "\\$1" "'\\$2"
+..
+.de Sp
+.if n .sp
+.if t .sp 0.4
+..
+.de Es
+.Sp
+.RS 5
+.nf
+..
+.de Ee
+.fi
+.RE
+.PP
+..
+.TH XMAHJONGG 6 "5 Jan 2000" "Version \*V"
+.SH NAME
+xmahjongg \- colorful solitaire Mah Jongg game
+'
+.SH SYNOPSIS
+.B xmahjongg
+\%[\fB--display\fP \fIdisplay\fP]
+\%[options]
+'
+.SH DESCRIPTION
+Real Mah Jongg is a social game that originated in China thousands of years
+ago. Four players, named after the four winds, take tiles from a wall in
+turn. The best tiles are made of ivory and wood; they click pleasantly when
+you knock them together. Computer Solitaire Mah Jongg 
+.RB ( xmahjongg
+being one of the sillier examples) is nothing like that but it's fun, or it
+must be, since there are like 300 shareware versions available for Windows.
+This is for X11 and it's free.
+'
+.SH HOW TO PLAY
+The object is to remove all Mah Jongg tiles from the playing field by
+taking one matching pair at a time. Generally, two tiles match if they have
+identical pictures on top. There are some exceptions: any season tile
+(spring, summer, autumn, or winter) matches any other season, and any
+flower tile (bamboo, orchid, plum, or chrysathemum) matches any other
+flower. There are 144 tiles in all\*Eone of each season and flower, and
+four copies of each of the following: 1 to 9 dots; 1 to 9 bamboo sticks;
+characters for 1 to 9; the four winds (north, south, east, and west); and
+three dragons (red, green, and white).
+.PP
+Only
+.I free tiles
+can be removed. A tile is free if its entire top face is unobstructed and
+either its left or its right edge is open. (When looking at the left and
+right edges, only tiles on the same level count.)
+.PP
+The rules are simple, but winning, it turns out, can be pretty hard. It's
+easy to make a move that causes a stalemate thirty or more moves later.
+What's worse, the
+.B \-\-any\-boards
+option lets
+.B xmahjongg
+create boards that cannot be solved at all!
+'
+.SH CONTROLS AND APPEARANCE
+To select a free tile, simply click it with the left mouse button and it
+will light up. Click it again to deselect it. If you try to select a
+non-free tile,
+.B xmahjongg
+will beep at you. To remove a matched pair, just select one of the pair and
+click on the other one. The number in the upper left corner tells you how
+many tiles you have left. This is all you really need to know to play the
+game.
+.PP
+.B Xmahjongg
+comes with several features that may dismay purists, but make the game more
+pleasant to play. First is the
+.IR "match count" , 
+an array of small gold coins in the upper middle. Each coin represents one
+potential match on the board. (If three mutually matching tiles are free,
+it counts as three matches, and if four are free, that's six matches.) This
+will let you know when the game is over (no gold coins means no matches\*Ea
+dead end) and when you're getting close.
+.PP
+The five buttons along the top right have the following functions:
+.TP 5
+.BR New " (keystroke: " n ")"
+Start a new game.
+'
+.TP
+.BR Quit " (keystroke: " q ")"
+Quit
+.BR xmahjongg .
+'
+.TP
+.BR Undo " (keystroke: " u ")"
+Undoes your last move. You can undo multiple moves by clicking multiple
+times. If you change your mind about undoing a move, hold down Shift while
+you click the Undo button (or press
+.BR r )
+to redo it.
+'
+.TP
+.BR Hint " (keystroke: " h ")"
+Gives you a hint by flashing a set of free matching tiles. You can cycle
+through all existing matches by clicking multiple times. If you select a
+tile and then click Hint,
+.B xmahjongg
+will flash any free tiles that match that tile, or beep if there aren't any.
+'
+.TP
+.BR Clean " (keystroke: " c ")"
+Cleans the board by automatically removing obvious matches. A match is
+obvious if it involves all the remaining tiles of a given type. (For
+example, if there are 2 green dragons left and they are both free, they
+form an obvious match; but if there are 4 left and only 3 are free, they
+don't.) Cleaning the board is guaranteed not to cause a stalemate later.
+'
+.TP
+.BR Solve " (no button; keystroke: " s ")"
+If you get stuck, press
+the
+.B s
+key. After the board is restored to its original state,
+.B xmahjongg
+will show you one way to solve it by removing tiles two at a time. Press
+.B s
+again to speed up the solution, or press
+.B Esc
+to stop. This won't work if you gave the \-\-any\-boards option (see
+below).
+'
+.PP
+Additionally, the
+.B Escape
+key deselects any selected tile.
+'
+.SH KEYBOARD TRAVERSAL
+You can use the arrow keys and the spacebar to play
+.B xmahjongg
+without using the mouse. These keys control the
+.IR cursor ,
+which is shown as a flashing tile. The arrow keys move the cursor around on
+the board in the obvious directions. The spacebar is like clicking the
+mouse button on the cursor tile: it either selects the tile or removes a
+matching pair.
+.PP
+The hint key, `h', is also useful for playing without the mouse. Experiment
+with `h', the spacebar, and the Return key to see how this works. When a
+hint is active, the spacebar is like clicking on one of the flashing hint
+tiles, while the Return key is like clicking on two of them (so it removes
+the tiles in one stroke). This method gives the fastest playing speed.
+'
+.SH OPTIONS
+'
+If you get bored with
+.BR xmahjongg 's
+original layout and appearance, never fear: it comes with several tilesets
+(tile images) and layouts (tile arrangements). In addition to these,
+.B xmahjongg
+can read layout files from the original xmahjongg, KDE Mahjongg, and Kyodai
+Mahjongg, and tilesets in KDE Mahjongg, Gnome Mahjongg, and Kyodai Mahjongg
+format. (However, tilesets must be converted to GIF format before
+.B xmahjongg
+can read them.) See the
+.OP \-l
+and
+.OP \-t
+options.
+'
+.PP
+Long option names can be abbreviated to their unique prefixes.
+
+.PD 0
+.TP 5
+.OA \-\-number N
+.TP 5
+.OA \-n N
+'
+Start with board number \fIN\fP.
+'
+.TP 5
+.OA \-l layout
+.TP 5
+.OA \-\-layout layout
+'
+Use the specified game layout.
+.B xmahjongg
+comes with several layouts. The normal layout is called
+.BR default ;
+to see the other ones' names, run
+.RB ` "xmahjongg \-\-list" '.
+You can also use an arbitrary layout by giving its filename. 
+.B Xmahjongg
+can read layouts in its own simple format, in KDE kmahjongg format, or in
+Kyodai Mahjongg format. (Kyodai Mahjongg is one of the more popular Windows
+Mah Jongg solitaire games. It's got 3D tiles and all sorts of stuff. See
+http://www.kyodai.com for more information. You can download a zip archive
+with more than 100 different layouts, mostly usable with
+.BR xmahjongg ,
+from http://www.kyodai.com/.)
+'
+.Sp
+.TP 5
+.OA \-\-tileset tileset
+'
+Use the specified tileset to draw the Mah Jongg tiles.
+.B Xmahjongg
+comes with several extra tilesets, particularly
+.B small
+(perfect for smaller screens). There are others too; run
+.RB ` "xmahjongg \-\-list" '
+for a complete listing.
+'
+.Sp
+.TP 5
+.OA \-\-background image
+.TP 5
+.OA \-\-bg image
+'
+The background image is set to
+.IR image .
+Run
+.RB ` "xmahjongg \-\-list" '
+to see the backgrounds that come with
+.BR xmahjongg ,
+or use an arbitrary GIF as a background image by giving its filename.
+'
+.Sp
+.TP 5
+.OP \-\-list
+'
+Lists all the layouts, tilesets, and backgrounds that came with
+.BR xmahjongg ,
+then exits.
+'
+.Sp
+.TP 5
+.OA \-\-solvable\-boards
+'
+Always create solvable boards. This is the default.
+'
+.Sp
+.TP 5
+.OA \-\-any\-boards
+'
+Allow any legal board, some of which will be solvable and some of which
+won't.
+'
+.Sp
+.TP 5
+.OA \-\-display display
+'
+Sets the X display to
+.IR display .
+'
+.Sp
+.TP 5
+.OA \-\-name name
+'
+Specifies the application name under which resources are found, rather than
+the default ``xmahjongg''. Since
+.B xmahjongg
+itself does not use the resource database, this is mostly useful for
+communication with your window manager.
+'
+.Sp
+.TP 5
+.OA \-\-geometry geometry
+'
+This standard X option specifies the preferred size and position for the
+.B xmahjongg
+window.
+'
+.Sp
+.TP 5
+.OP \-\-help
+'
+Prints usage information and exits.
+'
+.Sp
+.TP
+.OP \-\-version
+'
+Prints the version number and some quickie warranty information and exits.
+'
+.PD
+'
+.SH BUGS
+
+Please email suggestions, additions, patches and bugs to
+eddietwo@lcs.mit.edu. The following features have not made it into 3.0 as
+of yet:
+.IP * 2
+Tournament mode.
+.IP * 2
+Board setup mode.
+'
+.SH HISTORY
+.B xmahjongg
+version 3 is a complete rewrite by Eddie Kohler <eddietwo@lcs.mit.edu> of
+.B xmahjongg
+versions 1 and 2 by Jeff S. Young <jsy@cray.com>.
+.PP
+The default tileset was originally created in color by Dorothy Robinson
+<mokuren@teleport.com> with Mark A. Holm <markh@aracnet.com>. The
+publically available version was in black-and-white. Holm copyrighted the
+tiles in 1988, giving permission to copy and distribute for non-profit
+purposes. The significantly altered color version that comes with
+.B xmahjongg
+was created by Eddie Kohler in 1993. The `small' tileset was found at
+http://www.mahjongg.com/, and is presumably by Berrie Bloem. The `gnome'
+and `gnome2' tilesets were created by Jonathan Buzzard and Max Watson. The
+`dorothys' and `dorwhite' tilesets were made by Dorothy Robinson
+<mokuren@teleport.com>. The `real' tileset was scanned by Mark Sanctuary
+<sanctuary@jps.net>.
+.PP
+Many of the layouts are based on layouts designed for Kyodai Mahjongg, a
+fun Windows Mah Jongg game. In particular, `arena',
+`ceremonial', `deepwell', `farandole', and `theater' are by Naoki Haga, and
+`hourglass' and `papillon' are by Vincent Krebs. Kyodai Mahjongg's Web
+homepage is http://www.kyodai.com/.
+'
+.SH AUTHOR
+.na
+Eddie Kohler, eddietwo@lcs.mit.edu
+.br
+http://www.pdos.lcs.mit.edu/~eddietwo/
+.PP
+http://www.lcdf.org/~eddietwo/xmahjongg/
+.br
+The 
+.B xmahjongg
+home page.
+'

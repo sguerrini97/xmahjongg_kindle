@@ -1,0 +1,167 @@
+Xmahjongg NEWS
+
+Version 3.7   8.Mar.2005
+
+* Man page bug fixes from Debian via Dave Swegen.
+
+* Source code reorganization.
+
+
+Version 3.6.1   13.Sep.2002
+
+* Compilation fixes for newer GCCs; problems reported by Rene Blokland.
+
+
+Version 3.6   21.Aug.2001
+
+* Added `rat', `ox', `tiger', `hare', `dragon', `snake', `horse', `ram',
+  `monkey', `rooster', `dog', and `boar' layouts -- the whole Chinese
+  zodiac! -- contributed by Todd Michel McComb <mccomb@medieval.org>.
+
+
+Version 3.5   30.Jun.2001
+
+* Added native support for KDE Mahjongg (kmahjongg) tilesets and layouts.
+  (The tilesets must be converted to GIF format; kmahjongg uses BMP.)
+  Brought to my attention by Jim Broderick <broderick@linuxfreemail.com>.
+
+* Another compilation fix reported by Rene Blokland <reneb@cistron.nl>.
+
+* Fixed bug: xmahjongg would ignore some button release events.
+
+
+Version 3.4   17.May.2001
+
+* Compilation fix for newer gccs.
+
+
+Version 3.3   3.Apr.2000
+
+* Game play change: If a tile is selected already and you click a tile that
+  doesn't match, the selection is transferred to that new tile. (It used to
+  just beep at you.)
+
+* Bug fix in permstr.cc: now xmahjongg can be compiled with recent versions
+  of gcc. The error was a strange use of va_arg(). Reported by C. M.
+  Connelly <c@eskimo.com>.
+
+
+Version 3.2   5.Jan.2000
+
+* Added two new tilesets: `dorothys', a colored version by Dorothy Robinson
+  <mokuren@teleport.com> (the old `dorothys' has been renamed to
+  `dorwhite'), and `real', scanned images of some real Mah Jongg tiles
+  provided by Mark Sanctuary <sanctuary@jps.net>.
+
+* Added new tileset format. Check `share/tiles/real.gif' to see what it
+  looks like.
+
+
+Version 3.1   30.Dec.1999
+
+* Some small changes to hopefully fix a mystery bug: Some people report
+  that xmahjongg appears with no tiles visible. I can't replicate this.
+
+
+Version 3.0   19.Dec.1999
+
+* Finally completed number font!
+
+* Better support for very thick tilesets and tilesets with lower-right
+  direction shadows.
+
+* The `thick' tileset is now the default.
+
+* Speed improvements on highlighting and unhighlighting tiles.
+
+* The match count no longer bleeds into the layout area when there are a
+  lot of matches.
+
+* Can read Kyodai Mahjongg layout files. (See http://www.kyodai.com/)
+
+
+Version 3.0b11   17.Dec.1999
+
+* Added `dorothys' tileset, thanks to Dorothy Robinson
+  <mokuren@teleport.com>, artist of the original xmahjongg tiles. Also
+  added support for tilesets that don't have lower-left direction shadows.
+
+
+Version 3.0b10   12.Jan.1999
+
+* Fixed buffer overrun bug: xmahjongg wouldn't load anything but the
+  default layout.
+
+
+Version 3.0b9   28.Dec.1998
+
+* The xmahjongg package now uses automake.
+
+* Use the failing-malloc library to avoid problems with some systems' bad
+  realloc() definitions.
+
+* Improved error messages on bad files.
+
+
+Version 3.0b8   5.Nov.1998
+
+* Added support for Gnome Mahjongg-style tilesets. (Well, almost: while
+  Gnome Mahjongg reads XPMs -- and probably every other format, using imlib
+  -- xmahjongg can still only read GIFs.)
+
+* Added two tilesets from Gnome Mahjongg: `gnome' and `gnome2'. These
+  tilesets were apparently created by Jonathan Buzzard and Max Watson.
+
+* Shrank the border around the layout to waste less screen space. The default
+  tileset with default layout will now fit on a 1024x768 screen.
+
+* Renamed the `--board' option to `--layout'. Moved `share/boards' to 
+  `share/layouts'. Renamed the `tall' tileset to `thick'.
+
+
+Version 3.0b7   26.Sep.1998
+
+* `--help' now prints to stdout, following the GNU Coding Standards.
+
+* Made `--solvable-boards' the default.
+
+* Makefiles: Added `make uninstall' target, enabled `./configure's
+  program name transformations, made VPATH builds possible.
+
+
+Version 3.0b6   17.Sep.1998
+
+* More configuration changes so it'll work with egcs or gcc-2.7.2.1.
+
+
+Version 3.0b5   16.Sep.1998
+
+* Made it compilable with egcs.
+
+
+Version 3.0b4   12.Sep.1998
+
+* Fixed several display and clipping bugs.
+
+* Added `--list' and `--background'.
+
+* Initial display and new-game display are cleaner.
+
+* Cleaned up Panel and Board by removing unused or duplicate members and
+  functionality.
+
+
+Version 3.0b3   10.Sep.1998
+
+* Who the hell knows.
+
+
+Version 3.0b2   7.Sep.1998
+
+* Big release after the summer. Traversal, solutions, bug fixes, cleaned-up
+  code, a first go at a tile count, etc., etc.
+
+
+Version 3.0a1   1997
+
+* First release.

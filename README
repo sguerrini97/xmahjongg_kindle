@@ -1,0 +1,118 @@
+XMAHJONGG 3.7
+=============
+
+MAKING XMAHJONGG
+----------------
+   You need an ANSI C++ compiler, such as g++, but not C++ libraries.
+
+   Just type `./configure', then `make'. `make install' will build and
+install xmahjongg, its shared data, and its manual page. `./configure'
+accepts the usual options. See `INSTALL' for more details.
+
+   (More details: Give `configure' a `--prefix' option to install xmahjongg
+somewhere other than `/usr/local'. You can also give `configure' the
+`--bindir', `--mandir', and `--datadir' options for more more precise
+control. N.B.: `make install' will place all the shared data files in a
+subdirectory named `$(datadir)/xmahjongg'.)
+
+   If you want to test xmahjongg after compiling it, you'll run into
+trouble since the shared data have not been installed yet. To fix this,
+supply the `-B' option:
+
+	% make
+	% ./xmahjongg -B ./share --tileset small
+
+ABOUT XMAHJONGG
+---------------
+   Xmahjongg is a simple solitaire game. The object is to remove all 144
+Mah Jongg tiles from the playing area by matching them two at a time.
+
+   Xmahjongg 2.0 was released in 1990 by Jeff S. Young <jsy@cray.com>. This
+version has been completely rewritten by Eddie Kohler <eddietwo@mit.edu>.
+
+   New features in 3.0:
+   * Pretty, round-edged, and colorful Mah Jongg tiles.
+   * Multiple tile sets.
+   * Undo.
+   * Hints let you quickly locate possible matches.
+   * Solvable boards by default.
+   * A clean button for automatically removing certain kinds of tiles.
+   * Aesthetics.
+   * A count of matches remaining.
+   * No fiddling with the X font path.
+
+   Features 2.0 has that are not yet available in 3.0:
+   * Tournament mode.
+   * Visible board numbers.
+   * A "Same" button. (You can click Undo a lot to get the same effect.)
+   * Layout configuration mode.
+
+   Please see the man page, `xmahjongg.6', for information on how to play
+the game.
+
+   Xmahjongg comes with NO WARRANTY, express or implied, including, but not
+limited to, the implied warranties of merchantability and fitness for a
+particular purpose.
+
+XMAHJONGG HOME PAGE
+-------------------
+   For latest distributions, bug reports, and other stuff, see the
+Xmahjongg home page at
+
+	http://www.lcdf.org/xmahjongg/
+
+BUGS, SUGGESTIONS, ETC.
+-----------------------
+   Please write me if you have trouble building or running xmahjongg, or if
+you have suggestions or (preferably) patches.
+
+	Eddie Kohler
+	eddietwo@lcs.mit.edu
+	http://www.pdos.lcs.mit.edu/~eddietwo/
+
+AUTHORS
+-------
+   Eddie Kohler
+   Source code, default background image, buttons and numbers, coloring of
+the `default' and `thick' tilesets
+
+   Mark A. Holm
+   markh@aracnet.com
+   Black-and-white versions of the `default' and `tall' tilesets, (c) 1988.
+He gave permission to copy and distribute the black-and-white versions for
+non-profit purposes. The colored tiles are sufficiently different to make
+them a `derived work' which can be separately copyrighted; they are
+distributed under the GPL.
+
+   Dorothy Robinson
+   mokuren@teleport.com
+   `dorothys' tileset (c) 2000, and `dorwhite' tileset, which is the
+original color xmahjongg tiles (c) 1988.
+
+   Berrie Bloem (?)
+   http://www.mahjongg.com/
+   `small' tileset
+
+   Jonathan Buzzard and Max Watson
+   `gnome' and `gnome2' tilesets
+
+   Mark Sanctuary
+   http://jps.net/sanctuary
+   `real' tileset
+
+   Naoki Haga
+   http://www.kyodai.com/
+   `arena', `ceremonial', `deepwell', `farandole', and `theater' layouts
+
+   Vincent Krebs
+   `hourglass' and `papillon' layouts
+
+COPYRIGHT/LICENSE
+-----------------
+   All source code is Copyright (C) 1993-2000 Eddie Kohler.
+
+   This package is distributed under the GNU General Public License, Version
+2, or, at your discretion, any later version. The GNU General Public License
+is available via the Web at <http://www.gnu.org/copyleft/gpl.html>. The GPL
+is designed to allow you to alter and redistribute the package, as long as
+you do not remove that freedom from others.
