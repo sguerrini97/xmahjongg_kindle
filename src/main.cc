@@ -136,7 +136,7 @@ Options are:\n\
   --bg, --background IMAGE       Use the specified image for the background.\n\
       --list                     List known layouts, tilesets & backgrounds.\n\
   -d, --display DISPLAY          Set display to DISPLAY.\n\
-      --name NAME                Set application resource name to NAME.\n\
+      --name NAME                Set application resource name to NAME (disabled on Kindle build).\n\
   -g, --geometry GEOM            Set window geometry.\n\
   -B, --config-dir DIR           Look for shared configuration data in DIR.\n\
       --help                     Print this message and exit.\n\
@@ -572,8 +572,7 @@ main(int argc, char *argv[])
       break;
       
      case NAME_OPT:
-      if (x_name) fatal_error("only one --name allowed");
-      x_name = clp->arg;
+      fatal_error("Cannot change window name on Kinde build");
       break;
       
      case GEOMETRY_OPT:
