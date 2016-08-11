@@ -26,6 +26,8 @@
 #include <ctime>
 #include <lcdf/clp.h>
 
+#define KINDLE_WINDOW_NAME "L:A_N:application_ID:xmahjongg"
+
 const char *program_name;
 bool solvable_boards = true;
 Moment last_new_board;
@@ -696,10 +698,11 @@ particular purpose.\n");
       parse_geometry(geometry, size_hint, DisplayWidth(display, screen_number),
 		     DisplayHeight(display, screen_number));
 
-    String window_name = (x_name ? x_name : program_name);
-    if (layout_name)
-	window_name += String(" - ") + layout_name;
-    
+    // String window_name = (x_name ? x_name : program_name);
+    // if (layout_name)
+	//   window_name += String(" - ") + layout_name;
+    String window_name = String( KINDLE_WINDOW_NAME );
+	
     XClassHint class_hint;
     char *woog[2];
     XTextProperty window_name_prop, icon_name_prop;
