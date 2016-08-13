@@ -776,7 +776,7 @@ D["SIZEOF_VOID_P"]=" 4"
 D["SIZEOF_UNSIGNED_LONG"]=" 4"
 D["SIZEOF_UNSIGNED_INT"]=" 4"
 D["HAVE_NEW_HDR"]=" 1"
-D["PKGDATADIR"]=" \"${prefix}/share/xmahjongg\""
+D["PKGDATADIR"]=" \"/mnt/us/extensions/xmahjongg/config\""
   for (key in D) D_is_set[key] = 1
   FS = ""
 }
