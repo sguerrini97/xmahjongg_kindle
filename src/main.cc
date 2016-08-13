@@ -27,6 +27,7 @@
 #include <lcdf/clp.h>
 
 #define KINDLE_WINDOW_NAME "L:A_N:application_ID:xmahjongg"
+#define KINDLE_DEFAULT_TILESET "gnome2_bigger"
 
 const char *program_name;
 bool solvable_boards = true;
@@ -443,12 +444,12 @@ load_tileset(const char *tileset_name, const char *config_dir)
   
   // What if that's not a valid tileset?
   if (!tileset) {
-    if (strcmp(tileset_name, "thick") == 0)
-      config_error("can't load `thick' tileset!");
+    if (strcmp(tileset_name, KINDLE_DEFAULT_TILESET) == 0)
+      config_error("can't load default tileset!");
     else if (f != 0)
       error("tileset `%s' is invalid", tileset_name);
-    error("using default tileset `thick'");
-    return load_tileset("thick", config_dir);
+    error("using default tileset");
+    return load_tileset(KINDLE_DEFAULT_TILESET, config_dir);
   }
   
   return tileset;
@@ -503,7 +504,7 @@ main(int argc, char *argv[])
   // First, parse command-line options.
   const char *display_name = 0;
   const char *layout_name = 0;
-  const char *tileset_name = "thick";
+  const char *tileset_name = KINDLE_DEFAULT_TILESET;
   const char *background_name = "default";
   const char *x_name = 0;
   const char *geometry = 0;
