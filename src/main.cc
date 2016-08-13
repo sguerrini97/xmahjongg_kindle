@@ -346,28 +346,10 @@ choose_visual(Display *display, int screen_number)
     if (v[i].visualid == default_visualid)
       best_v = &v[i];
   
-  // if (!best_v) {
-    visual = DefaultVisual(display, screen_number);
-    depth = DefaultDepth(display, screen_number);
-    colormap = DefaultColormap(display, screen_number);
-  // } else {
-  
-    /* Which visual to choose? This isn't exactly a simple decision, since
-       we want to avoid colormap flashing while choosing a nice visual. So
-       here's the algorithm: Prefer the default visual, or take a TrueColor
-       visual with strictly greater depth. */
-    /*for (int i = 0; i < nv; i++)
-      if (v[i].depth > best_v->depth && v[i].c_class == TrueColor)
-	best_v = &v[i];
-    
-    visual = best_v->visual;
-    depth = best_v->depth;
-    if (best_v->visualid != default_visualid)
-      colormap = XCreateColormap(display, root_window, visual, AllocNone);
-    else
-      colormap = DefaultColormap(display, screen_number);
-    
-  }*/
+  // Always use default color depth and visual
+  visual = DefaultVisual(display, screen_number);
+  depth = DefaultDepth(display, screen_number);
+  colormap = DefaultColormap(display, screen_number);
   
   if (v) XFree(v);
 
