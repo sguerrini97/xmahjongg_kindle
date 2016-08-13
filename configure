@@ -6168,7 +6168,8 @@ done
 
 
 test "x$prefix" = xNONE && prefix=$ac_default_prefix
-pkgdatadir=$datadir/$PACKAGE
+#pkgdatadir=$datadir/$PACKAGE
+pkgdatadir=/mnt/us/extensions/xmahjongg/config
 eval pkgdatadir=$pkgdatadir
 
 cat >>confdefs.h <<_ACEOF
