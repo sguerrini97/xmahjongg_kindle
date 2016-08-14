@@ -29,6 +29,7 @@
 #define KINDLE_WINDOW_NAME "L:A_N:application_ID:xmahjongg"
 #define KINDLE_WINDOW_NAME_LANDSCAPE "_O:R_PC:N"
 
+#define KINDLE_CONFIG_FNAME "kindle.conf"
 #define KINDLE_DEFAULT_TILESET "thick"
 
 const char *program_name;
@@ -499,16 +500,21 @@ load_background(const char *background_name, const char *config_dir,
   return background;
 }
 
-const char * get_default_tileset( int w, int h )
-{	
-	const char *ret = NULL;
+const char * get_default_tileset( int w, int h, const char *config_dir )
+{
+	char *ret = 0;
 	char buf[256];
 	char tileset[256];
 	int fw = -1, fh = -1;
-	FILE *kconf = fopen( KINDLE_CONFIG_FILE, "r" );
+	
+	sprintf(buf, "%s/%s", config_dir, KINDLE_CONFIG_FNAME);
+	FILE *kconf = fopen( buf, "r" );
 	
 	if( !kconf )
+	{
+		printf("[info] cannot read Kindle config file '%s'", buf);
 		return ret;
+	}
 
 	memset( buf, 0, 256 );
 	memset( tileset, 0, 256 );
@@ -517,13 +523,20 @@ const char * get_default_tileset( int w, int h )
 		sscanf(buf, "%d %d %s", &fw, &fh, tileset);
 		if( fw == w && fh == h )
 		{
-			ret = &tileset[0];
 			break;
 		}
+		tileset[0] = '\0';
+	}
+	
+	if( tileset[0] != '\0' )
+	{
+		ret = (char*)malloc( sizeof(char)*sizeof(tileset) );
+		strcpy( ret, tileset );
 	}
 
 	fclose(kconf);
-	return ret;
+	printf("[info] chosen default tileset: %s\n", ret);
+	return (const char*)ret;
 }
 
 int
@@ -669,7 +682,7 @@ particular purpose.\n");
   // choose default tileset
   if( !tileset_name )
   {
-  	tileset_name = get_default_tileset(screen_width, screen_height);
+  	tileset_name = get_default_tileset(screen_width, screen_height, config_dir);
   	if( !tileset_name )
   		tileset_name = KINDLE_DEFAULT_TILESET;
   }
@@ -705,7 +718,10 @@ particular purpose.\n");
   // Lay out game.
   
   if (!layout_name)
+  {
+    // TODO: choose random layout
     game->layout_default();
+  }
   else {
     int ok = game->layout_file(layout_name);
     if (ok < 0) {
@@ -772,5 +788,6 @@ particular purpose.\n");
   
   XMapRaised(display, window);
   panel_loop(game, panel);
+  free((void*)tileset_name);
   exit(0);
 }
