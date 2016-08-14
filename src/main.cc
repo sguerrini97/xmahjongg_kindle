@@ -694,6 +694,8 @@ particular purpose.\n");
     if (geometry)
       parse_geometry(geometry, size_hint, DisplayWidth(display, screen_number),
 		     DisplayHeight(display, screen_number));
+		     
+    printf("[debug] display resolution: %ix%i\n", DisplayWidth(display, screen_number), DisplayHeight(display, screen_number));
 
     if( !x_name )
       window_name = String( KINDLE_WINDOW_NAME );
