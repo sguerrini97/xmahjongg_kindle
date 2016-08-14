@@ -27,6 +27,8 @@
 #include <lcdf/clp.h>
 
 #define KINDLE_WINDOW_NAME "L:A_N:application_ID:xmahjongg"
+#define KINDLE_WINDOW_NAME_LANDSCAPE "_O:R_C_PC:N""
+
 #define KINDLE_DEFAULT_TILESET "gnome2_bigger"
 
 const char *program_name;
@@ -41,7 +43,7 @@ extern Gif_Record buttons_gif;
 #define DISPLAY_OPT		300
 #define HELP_OPT		301
 #define VERSION_OPT		302
-#define NAME_OPT		303
+#define LANDSCAPE_OPT		303
 #define GEOMETRY_OPT		304
 #define SOLVABLE_OPT		305
 #define ANY_BOARD_OPT		306
@@ -63,7 +65,7 @@ static Clp_Option options[] = {
   { "help", 0, HELP_OPT, 0, 0 },
   { "layout", 'l', LAYOUT_OPT, Clp_ArgStringNotOption, 0 },
   { "list", 0, LIST_OPT, 0, 0 },
-  { "name", 0, NAME_OPT, Clp_ArgString, 0 },
+  { "landscape", 0, LANDSCAPE_OPT, Clp_ArgString, 0 },
   { "number", 'n', BOARD_NUMBER_OPT, Clp_ArgInt, Clp_Negate },
   { "solvable-boards", 's', SOLVABLE_OPT, 0, Clp_Negate },
   { "tileset", 't', TILESET_OPT, Clp_ArgStringNotOption, 0 },
@@ -137,7 +139,7 @@ Options are:\n\
   --bg, --background IMAGE       Use the specified image for the background.\n\
       --list                     List known layouts, tilesets & backgrounds.\n\
   -d, --display DISPLAY          Set display to DISPLAY.\n\
-      --name NAME                Set application resource name to NAME (disabled on Kindle build).\n\
+      --landscape true/false     Set the window in landscape mode.\n\
   -g, --geometry GEOM            Set window geometry.\n\
   -B, --config-dir DIR           Look for shared configuration data in DIR.\n\
       --help                     Print this message and exit.\n\
@@ -507,6 +509,7 @@ main(int argc, char *argv[])
   const char *tileset_name = KINDLE_DEFAULT_TILESET;
   const char *background_name = "default";
   const char *x_name = 0;
+  String windo_name;
   const char *geometry = 0;
   const char *config_dir = PKGDATADIR;
   bool board_number_given = false;
@@ -555,7 +558,12 @@ main(int argc, char *argv[])
       break;
       
      case NAME_OPT:
-      fatal_error("Cannot change window name on Kinde build");
+      if( x_name ) fatal_error("Cannot change window name on Kinde build");
+      x_name = clip->arg;
+      if( strcmp(x_name, "true") == 0 )
+      {
+      	window_name = String( KINDLE_WINDOW_NAME ) + String( KINDLE_WINDOW_NAME_LANDSCAPE );
+      }
       break;
       
      case GEOMETRY_OPT:
@@ -680,10 +688,8 @@ particular purpose.\n");
       parse_geometry(geometry, size_hint, DisplayWidth(display, screen_number),
 		     DisplayHeight(display, screen_number));
 
-    // String window_name = (x_name ? x_name : program_name);
-    // if (layout_name)
-	//   window_name += String(" - ") + layout_name;
-    String window_name = String( KINDLE_WINDOW_NAME );
+    if( !x_name )
+      window_name = String( KINDLE_WINDOW_NAME );
 	
     XClassHint class_hint;
     char *woog[2];
