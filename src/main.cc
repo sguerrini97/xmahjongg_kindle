@@ -712,7 +712,7 @@ particular purpose.\n");
 		     DisplayHeight(display, screen_number));
 
     if( !x_name )
-      window_name = String( KINDLE_WINDOW_NAME );
+      window_name = String( KINDLE_WINDOW_NAME ) + String( KINDLE_WINDOW_NAME_LANDSCAPE );
       
     printf("[info] window_name: %s\n", window_name.c_str());
 	
