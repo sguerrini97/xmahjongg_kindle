@@ -139,7 +139,7 @@ Options are:\n\
   --bg, --background IMAGE       Use the specified image for the background.\n\
       --list                     List known layouts, tilesets & backgrounds.\n\
   -d, --display DISPLAY          Set display to DISPLAY.\n\
-      --landscape true/false     Set the window in landscape mode.\n\
+      --landscape true/false     Set the window in landscape mode (Kindle).\n\
   -g, --geometry GEOM            Set window geometry.\n\
   -B, --config-dir DIR           Look for shared configuration data in DIR.\n\
       --help                     Print this message and exit.\n\
