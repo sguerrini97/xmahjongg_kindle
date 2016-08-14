@@ -695,12 +695,12 @@ particular purpose.\n");
       parse_geometry(geometry, size_hint, DisplayWidth(display, screen_number),
 		     DisplayHeight(display, screen_number));
 		     
-    printf("[debug] display resolution: %ix%i\n", DisplayWidth(display, screen_number), DisplayHeight(display, screen_number));
+    printf("[info] display resolution: %ix%i\n", DisplayWidth(display, screen_number), DisplayHeight(display, screen_number));
 
     if( !x_name )
       window_name = String( KINDLE_WINDOW_NAME );
       
-    printf("[debug] window_name: %s\n", window_name.c_str());
+    printf("[info] window_name: %s\n", window_name.c_str());
 	
     XClassHint class_hint;
     char *woog[2];
