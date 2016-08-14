@@ -499,6 +499,32 @@ load_background(const char *background_name, const char *config_dir,
   return background;
 }
 
+const char * get_default_tileset( int w, int h )
+{	
+	const char *ret = NULL;
+	char buf[256];
+	char tileset[256];
+	int fw = -1, fh = -1;
+	FILE *kconf = fopen( KINDLE_CONFIG_FILE, "r" );
+	
+	if( !kconf )
+		return ret;
+
+	memset( buf, 0, 256 );
+	memset( tileset, 0, 256 );
+	while( fgets(buf, sizeof(buf), kconf) )
+	{
+		sscanf(buf, "%d %d %s", &fw, &fh, tileset);
+		if( fw == w && fh == h )
+		{
+			ret = &tileset[0];
+			break;
+		}
+	}
+
+	fclose(kconf);
+	return ret;
+}
 
 int
 main(int argc, char *argv[])
@@ -640,12 +666,11 @@ particular purpose.\n");
   screen_height = DisplayHeight(display, screen_number);
   printf("[info] display resolution: %ix%i\n", screen_width, screen_height);
   
+  // choose default tileset
   if( !tileset_name )
   {
-  	// TODO: add more resolutions
-  	if( screen_width == 600 && screen_height == 800 )
-  		tileset_name = "gnome2_bigger";
-  	else
+  	tileset_name = get_default_tileset(screen_width, screen_height);
+  	if( !tileset_name )
   		tileset_name = KINDLE_DEFAULT_TILESET;
   }
   
