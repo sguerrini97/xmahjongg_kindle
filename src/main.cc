@@ -27,7 +27,7 @@
 #include <lcdf/clp.h>
 
 #define KINDLE_WINDOW_NAME "L:A_N:application_ID:xmahjongg"
-#define KINDLE_WINDOW_NAME_LANDSCAPE "_O:R_C_PC:N""
+#define KINDLE_WINDOW_NAME_LANDSCAPE "_O:R_PC:N"
 
 #define KINDLE_DEFAULT_TILESET "gnome2_bigger"
 
@@ -509,7 +509,7 @@ main(int argc, char *argv[])
   const char *tileset_name = KINDLE_DEFAULT_TILESET;
   const char *background_name = "default";
   const char *x_name = 0;
-  String windo_name;
+  String window_name;
   const char *geometry = 0;
   const char *config_dir = PKGDATADIR;
   bool board_number_given = false;
@@ -557,12 +557,19 @@ main(int argc, char *argv[])
       display_name = clp->arg;
       break;
       
-     case NAME_OPT:
-      if( x_name ) fatal_error("Cannot change window name on Kinde build");
-      x_name = clip->arg;
+     case LANDSCAPE_OPT:
+      if( x_name ) fatal_error("only one --landscape allowed");
+      x_name = clp->arg;
+      printf("landscape: ");
       if( strcmp(x_name, "true") == 0 )
       {
+      	printf("true\n");
       	window_name = String( KINDLE_WINDOW_NAME ) + String( KINDLE_WINDOW_NAME_LANDSCAPE );
+      }
+      else
+      {
+      	printf("false\n");
+      	window_name = String( KINDLE_WINDOW_NAME );
       }
       break;
       
@@ -690,6 +697,8 @@ particular purpose.\n");
 
     if( !x_name )
       window_name = String( KINDLE_WINDOW_NAME );
+      
+    printf("[debug] window_name: %s\n", window_name.c_str());
 	
     XClassHint class_hint;
     char *woog[2];

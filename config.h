@@ -74,7 +74,7 @@
 #define PACKAGE_VERSION ""
 
 /* Define to the pathname of the --pkgdatadir directory. */
-#define PKGDATADIR "${prefix}/share/xmahjongg"
+#define PKGDATADIR "/mnt/us/extensions/xmahjongg/data"
 
 /* The size of `unsigned int', as computed by sizeof. */
 #define SIZEOF_UNSIGNED_INT 4
