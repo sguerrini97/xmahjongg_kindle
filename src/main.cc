@@ -29,7 +29,7 @@
 #define KINDLE_WINDOW_NAME "L:A_N:application_ID:xmahjongg"
 #define KINDLE_WINDOW_NAME_LANDSCAPE "_O:R_PC:N"
 
-#define KINDLE_DEFAULT_TILESET "gnome2_bigger"
+#define KINDLE_DEFAULT_TILESET "thick"
 
 const char *program_name;
 bool solvable_boards = true;
@@ -506,7 +506,7 @@ main(int argc, char *argv[])
   // First, parse command-line options.
   const char *display_name = 0;
   const char *layout_name = 0;
-  const char *tileset_name = KINDLE_DEFAULT_TILESET;
+  const char *tileset_name = 0;
   const char *background_name = "default";
   const char *x_name = 0;
   String window_name;
@@ -515,6 +515,9 @@ main(int argc, char *argv[])
   bool board_number_given = false;
   uint32_t board_number = 0;
   bool do_config_list = false;
+  
+  int screen_width = -1;
+  int screen_height = -1;
   
   Clp_Parser *clp =
     Clp_NewParser(argc, (const char * const *)argv, sizeof(options) / sizeof(options[0]), options);
@@ -633,6 +636,19 @@ particular purpose.\n");
   int screen_number = DefaultScreen(display);
   choose_visual(display, screen_number);
   
+  screen_width = DisplayWidth(display, screen_number);
+  screen_height = DisplayHeight(display, screen_number);
+  printf("[info] display resolution: %ix%i\n", screen_width, screen_height);
+  
+  if( !tileset_name )
+  {
+  	// TODO: add more resolutions
+  	if( screen_width == 600 && screen_height == 800 )
+  		tileset_name = "gnome2_bigger";
+  	else
+  		tileset_name = KINDLE_DEFAULT_TILESET;
+  }
+  
   Tileset *tileset = load_tileset(tileset_name, config_dir);
   Pixmap background = load_background(background_name, config_dir, gifx);
   
@@ -694,8 +710,6 @@ particular purpose.\n");
     if (geometry)
       parse_geometry(geometry, size_hint, DisplayWidth(display, screen_number),
 		     DisplayHeight(display, screen_number));
-		     
-    printf("[info] display resolution: %ix%i\n", DisplayWidth(display, screen_number), DisplayHeight(display, screen_number));
 
     if( !x_name )
       window_name = String( KINDLE_WINDOW_NAME );
